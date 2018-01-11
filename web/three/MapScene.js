@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 
+import MapActions from '../flux/actions/MapActions';
+
 //import OrbitControls from "orbit-controls-es6";
 import OrbitControls from './OrbitControlsEnh';
 import GLTF2Loader from 'three-gltf2-loader';
 GLTF2Loader(THREE);
 
 export default class MapScene {
-  constructor(parentComponent) {
-    //    this.updateLoadedPercentage = parentComponent.props.updateLoadedPercentage;
-    this.parentComponent = parentComponent;
+  constructor() {
     this.animate = this.animate.bind(this);
     this.onLoad = this.onLoad.bind(this);
   }
@@ -107,8 +107,7 @@ export default class MapScene {
 
   onLoad(xhr) {
     let loaded = Math.floor(xhr.loaded / xhr.total * 100) + '';
-    console.log(loaded + '% loaded');
-    this.parentComponent.updateLoadedPercentage(loaded);
+    MapActions.updatePercentage(loaded);
   }
 
   start() {
@@ -177,6 +176,5 @@ export default class MapScene {
     div.style.left = -1000;
     document.getElementById('container').appendChild(div);
     return div;
-    //renderer.domElement.getParent().appendChild(div);
   }
 }

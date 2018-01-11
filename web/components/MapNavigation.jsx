@@ -2,19 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../styles.css';
-import I18n from 'i18n-js';
 import MapScene from '../three/MapScene';
+
+import ProgressBar from './ProgressBar.jsx';
+import AppDispatcher from '../flux/AppDispatcher';
+import { EventEmitter } from 'events';
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
     super(props);
-    this.updateLoadedPercentage = this.updateLoadedPercentage.bind(this);
-    this.state = { loadedPercentage: 0 };
-    this.mapScene = new MapScene(this);
-  }
-
-  updateLoadedPercentage(newPercentage) {
-    this.setState({ loadedPercentage: newPercentage });
+    this.mapScene = new MapScene();
   }
 
   componentDidMount() {
@@ -50,31 +47,7 @@ export default class MapNavigationPage extends React.Component {
             />
           </NavLink>
         </div>
-        {this.state.loadedPercentage !== '100' && (
-          <div
-            className="progress"
-            style={{
-              position: 'absolute',
-              top: '0',
-              bottom: '0',
-              left: '0',
-              right: '0',
-              margin: 'auto',
-              width: '50%'
-            }}
-          >
-            <div
-              className="progress-bar"
-              role="progressbar"
-              aria-valuenow={this.state.loadedPercentage}
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style={{ width: this.state.loadedPercentage + '%' }}
-            >
-              {this.state.loadedPercentage} {I18n.t('PercentsLoaded')}
-            </div>
-          </div>
-        )}
+        <ProgressBar />
       </div>
     );
   }

@@ -1,26 +1,15 @@
-0.3 Make navigation button as in native or check how to do navigation, where path is not shown in browser
-    Check transitionTo method (currently dumps)
-1. In the native environment, make title dynamic (being refreshed)
-2. Create simple dialog tree component and use it
-3. In the web version, implement same look and feel as in native
-4. Create simple area map with clickable sections
-4.1. User should be able to move map, click some places and navigate there                                   
-4.2. Deploy map to native and test how it works there.                    
-4.3. Deploy map to web version.
+4.1. User should be able to move map, click some places and navigate there
 4.4. Add user authentication via google
 4.5. learn how to pass data between states
 4.6. Check if context class is needed at all or can be deleted
 
 Update/create document explaining how to start project.
-Update/create document explaining how to debug on real phone or android emulator
 Create document explaining how to do Blender texture painting
 Create document explaining how to export objects from Blender to three.js
 
 Publicity:
 adsense for web
-admob for native (Expo only has FB Ads for now)
 Add google authorization for users
-
 
 TASK "Map scene"
 - create island map with at least two points: "Airport", "Hotel"

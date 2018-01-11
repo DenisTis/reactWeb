@@ -28,7 +28,7 @@ import {
   OrthographicCamera,
   PerspectiveCamera,
   EventDispatcher
-} from "three";
+} from 'three';
 
 export default class OrbitControls extends EventDispatcher {
   constructor(object, domElement) {
@@ -232,18 +232,18 @@ export default class OrbitControls extends EventDispatcher {
     })();
 
     this.dispose = function() {
-      scope.domElement.removeEventListener("contextmenu", onContextMenu, false);
-      scope.domElement.removeEventListener("mousedown", onMouseDown, false);
-      scope.domElement.removeEventListener("wheel", onMouseWheel, false);
+      scope.domElement.removeEventListener('contextmenu', onContextMenu, false);
+      scope.domElement.removeEventListener('mousedown', onMouseDown, false);
+      scope.domElement.removeEventListener('wheel', onMouseWheel, false);
 
-      scope.domElement.removeEventListener("touchstart", onTouchStart, false);
-      scope.domElement.removeEventListener("touchend", onTouchEnd, false);
-      scope.domElement.removeEventListener("touchmove", onTouchMove, false);
+      scope.domElement.removeEventListener('touchstart', onTouchStart, false);
+      scope.domElement.removeEventListener('touchend', onTouchEnd, false);
+      scope.domElement.removeEventListener('touchmove', onTouchMove, false);
 
-      document.removeEventListener("mousemove", onMouseMove, false);
-      document.removeEventListener("mouseup", onMouseUp, false);
+      document.removeEventListener('mousemove', onMouseMove, false);
+      document.removeEventListener('mouseup', onMouseUp, false);
 
-      window.removeEventListener("keydown", onKeyDown, false);
+      window.removeEventListener('keydown', onKeyDown, false);
 
       //scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
     };
@@ -255,13 +255,13 @@ export default class OrbitControls extends EventDispatcher {
     var scope = this;
 
     var changeEvent = {
-      type: "change"
+      type: 'change'
     };
     var startEvent = {
-      type: "start"
+      type: 'start'
     };
     var endEvent = {
-      type: "end"
+      type: 'end'
     };
 
     var STATE = {
@@ -410,7 +410,7 @@ export default class OrbitControls extends EventDispatcher {
         } else {
           // camera neither orthographic nor perspective
           console.warn(
-            "WARNING: OrbitControls.js encountered an unknown camera type - pan disabled."
+            'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.'
           );
           scope.enablePan = false;
         }
@@ -429,7 +429,7 @@ export default class OrbitControls extends EventDispatcher {
         zoomChanged = true;
       } else {
         console.warn(
-          "WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled."
+          'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.'
         );
         scope.enableZoom = false;
       }
@@ -439,8 +439,8 @@ export default class OrbitControls extends EventDispatcher {
       if (Object.getPrototypeOf(scope.object).isPerspectiveCamera) {
         // //Denis - allow zoom in only until special height
         // if (scope.object.position.y > 5) {
-          scale *= dollyScale;
-//        }
+        scale *= dollyScale;
+        //        }
       } else if (Object.getPrototypeOf(scope.object).isOrthographicCamera) {
         scope.object.zoom = Math.max(
           scope.minZoom,
@@ -450,7 +450,7 @@ export default class OrbitControls extends EventDispatcher {
         zoomChanged = true;
       } else {
         console.warn(
-          "WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled."
+          'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.'
         );
         scope.enableZoom = false;
       }
@@ -556,25 +556,25 @@ export default class OrbitControls extends EventDispatcher {
       //console.log( 'handleKeyDown' );
 
       switch (event.keyCode) {
-        case scope.keys.UP:
-          pan(0, scope.keyPanSpeed);
-          scope.update();
-          break;
+      case scope.keys.UP:
+        pan(0, scope.keyPanSpeed);
+        scope.update();
+        break;
 
-        case scope.keys.BOTTOM:
-          pan(0, -scope.keyPanSpeed);
-          scope.update();
-          break;
+      case scope.keys.BOTTOM:
+        pan(0, -scope.keyPanSpeed);
+        scope.update();
+        break;
 
-        case scope.keys.LEFT:
-          pan(scope.keyPanSpeed, 0);
-          scope.update();
-          break;
+      case scope.keys.LEFT:
+        pan(scope.keyPanSpeed, 0);
+        scope.update();
+        break;
 
-        case scope.keys.RIGHT:
-          pan(-scope.keyPanSpeed, 0);
-          scope.update();
-          break;
+      case scope.keys.RIGHT:
+        pan(-scope.keyPanSpeed, 0);
+        scope.update();
+        break;
       }
     }
 
@@ -698,8 +698,8 @@ export default class OrbitControls extends EventDispatcher {
       }
 
       if (state !== STATE.NONE) {
-        document.addEventListener("mousemove", onMouseMove, false);
-        document.addEventListener("mouseup", onMouseUp, false);
+        document.addEventListener('mousemove', onMouseMove, false);
+        document.addEventListener('mouseup', onMouseUp, false);
 
         scope.dispatchEvent(startEvent);
       }
@@ -730,8 +730,8 @@ export default class OrbitControls extends EventDispatcher {
 
       handleMouseUp(event);
 
-      document.removeEventListener("mousemove", onMouseMove, false);
-      document.removeEventListener("mouseup", onMouseUp, false);
+      document.removeEventListener('mousemove', onMouseMove, false);
+      document.removeEventListener('mouseup', onMouseUp, false);
 
       scope.dispatchEvent(endEvent);
 
@@ -770,35 +770,35 @@ export default class OrbitControls extends EventDispatcher {
       if (scope.enabled === false) return;
 
       switch (event.touches.length) {
-        case 1: // one-fingered touch: rotate
-          if (scope.enableRotate === false) return;
+      case 1: // one-fingered touch: rotate
+        if (scope.enableRotate === false) return;
 
-          handleTouchStartRotate(event);
+        handleTouchStartRotate(event);
 
-          state = STATE.TOUCH_ROTATE;
+        state = STATE.TOUCH_ROTATE;
 
-          break;
+        break;
 
-        case 2: // two-fingered touch: dolly
-          if (scope.enableZoom === false) return;
+      case 2: // two-fingered touch: dolly
+        if (scope.enableZoom === false) return;
 
-          handleTouchStartDolly(event);
+        handleTouchStartDolly(event);
 
-          state = STATE.TOUCH_DOLLY;
+        state = STATE.TOUCH_DOLLY;
 
-          break;
+        break;
 
-        case 3: // three-fingered touch: pan
-          if (scope.enablePan === false) return;
+      case 3: // three-fingered touch: pan
+        if (scope.enablePan === false) return;
 
-          handleTouchStartPan(event);
+        handleTouchStartPan(event);
 
-          state = STATE.TOUCH_PAN;
+        state = STATE.TOUCH_PAN;
 
-          break;
+        break;
 
-        default:
-          state = STATE.NONE;
+      default:
+        state = STATE.NONE;
       }
 
       if (state !== STATE.NONE) {
@@ -813,32 +813,32 @@ export default class OrbitControls extends EventDispatcher {
       event.stopPropagation();
 
       switch (event.touches.length) {
-        case 1: // one-fingered touch: rotate
-          if (scope.enableRotate === false) return;
-          if (state !== STATE.TOUCH_ROTATE) return; // is this needed?...
+      case 1: // one-fingered touch: rotate
+        if (scope.enableRotate === false) return;
+        if (state !== STATE.TOUCH_ROTATE) return; // is this needed?...
 
-          handleTouchMoveRotate(event);
+        handleTouchMoveRotate(event);
 
-          break;
+        break;
 
-        case 2: // two-fingered touch: dolly
-          if (scope.enableZoom === false) return;
-          if (state !== STATE.TOUCH_DOLLY) return; // is this needed?...
+      case 2: // two-fingered touch: dolly
+        if (scope.enableZoom === false) return;
+        if (state !== STATE.TOUCH_DOLLY) return; // is this needed?...
 
-          handleTouchMoveDolly(event);
+        handleTouchMoveDolly(event);
 
-          break;
+        break;
 
-        case 3: // three-fingered touch: pan
-          if (scope.enablePan === false) return;
-          if (state !== STATE.TOUCH_PAN) return; // is this needed?...
+      case 3: // three-fingered touch: pan
+        if (scope.enablePan === false) return;
+        if (state !== STATE.TOUCH_PAN) return; // is this needed?...
 
-          handleTouchMovePan(event);
+        handleTouchMovePan(event);
 
-          break;
+        break;
 
-        default:
-          state = STATE.NONE;
+      default:
+        state = STATE.NONE;
       }
     }
 
@@ -858,16 +858,16 @@ export default class OrbitControls extends EventDispatcher {
 
     //
 
-    scope.domElement.addEventListener("contextmenu", onContextMenu, false);
+    scope.domElement.addEventListener('contextmenu', onContextMenu, false);
 
-    scope.domElement.addEventListener("mousedown", onMouseDown, false);
-    scope.domElement.addEventListener("wheel", onMouseWheel, false);
+    scope.domElement.addEventListener('mousedown', onMouseDown, false);
+    scope.domElement.addEventListener('wheel', onMouseWheel, false);
 
-    scope.domElement.addEventListener("touchstart", onTouchStart, false);
-    scope.domElement.addEventListener("touchend", onTouchEnd, false);
-    scope.domElement.addEventListener("touchmove", onTouchMove, false);
+    scope.domElement.addEventListener('touchstart', onTouchStart, false);
+    scope.domElement.addEventListener('touchend', onTouchEnd, false);
+    scope.domElement.addEventListener('touchmove', onTouchMove, false);
 
-    window.addEventListener("keydown", onKeyDown, false);
+    window.addEventListener('keydown', onKeyDown, false);
 
     // force an update at start
 
@@ -875,7 +875,7 @@ export default class OrbitControls extends EventDispatcher {
   }
 
   get center() {
-    console.warn("OrbitControls: .center has been renamed to .target");
+    console.warn('OrbitControls: .center has been renamed to .target');
     return this.target;
   }
 
@@ -883,84 +883,84 @@ export default class OrbitControls extends EventDispatcher {
 
   get noZoom() {
     console.warn(
-      "OrbitControls: .noZoom has been deprecated. Use .enableZoom instead."
+      'OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.'
     );
     return !this.enableZoom;
   }
 
   set noZoom(value) {
     console.warn(
-      "OrbitControls: .noZoom has been deprecated. Use .enableZoom instead."
+      'OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.'
     );
     this.enableZoom = !value;
   }
 
   get noRotate() {
     console.warn(
-      "OrbitControls: .noRotate has been deprecated. Use .enableRotate instead."
+      'OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.'
     );
     return !this.enableRotate;
   }
 
   set noRotate(value) {
     console.warn(
-      "OrbitControls: .noRotate has been deprecated. Use .enableRotate instead."
+      'OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.'
     );
     this.enableRotate = !value;
   }
 
   get noPan() {
     console.warn(
-      "OrbitControls: .noPan has been deprecated. Use .enablePan instead."
+      'OrbitControls: .noPan has been deprecated. Use .enablePan instead.'
     );
     return !this.enablePan;
   }
 
   set noPan(value) {
     console.warn(
-      "OrbitControls: .noPan has been deprecated. Use .enablePan instead."
+      'OrbitControls: .noPan has been deprecated. Use .enablePan instead.'
     );
     this.enablePan = !value;
   }
 
   get noKeys() {
     console.warn(
-      "OrbitControls: .noKeys has been deprecated. Use .enableKeys instead."
+      'OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.'
     );
     return !this.enableKeys;
   }
 
   set noKeys(value) {
     console.warn(
-      "OrbitControls: .noKeys has been deprecated. Use .enableKeys instead."
+      'OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.'
     );
     this.enableKeys = !value;
   }
 
   get staticMoving() {
     console.warn(
-      "OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead."
+      'OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.'
     );
     return !this.enableDamping;
   }
 
   set staticMoving(value) {
     console.warn(
-      "OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead."
+      'OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.'
     );
     this.enableDamping = !value;
   }
 
   get dynamicDampingFactor() {
     console.warn(
-      "OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead."
+      'OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.'
     );
     return this.dampingFactor;
   }
 
   set dynamicDampingFactor(value) {
     console.warn(
-      "OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead."
+      'OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.'
     );
     this.dampingFactor = value;
   }

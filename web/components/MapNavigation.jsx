@@ -1,9 +1,9 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import "../styles.css";
-import I18n from "i18n-js";
-import MapScene from "../three/MapScene";
+import '../styles.css';
+import I18n from 'i18n-js';
+import MapScene from '../three/MapScene';
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
@@ -30,8 +30,8 @@ export default class MapNavigationPage extends React.Component {
       <div
         id="container"
         style={{
-          width: "100%",
-          height: "100%"
+          width: '100%',
+          height: '100%'
         }}
         ref={mount => {
           this.mount = mount;
@@ -40,27 +40,27 @@ export default class MapNavigationPage extends React.Component {
         <div>
           <NavLink to="/">
             <span
-              className={"glyphicon glyphicon-menu-left"}
+              className={'glyphicon glyphicon-menu-left'}
               style={{
-                position: "absolute",
-                fontSize: "2em",
-                left: "1",
-                top: "2"
+                position: 'absolute',
+                fontSize: '2em',
+                left: '1',
+                top: '2'
               }}
             />
           </NavLink>
         </div>
-        {this.state.loadedPercentage !== "100" && (
+        {this.state.loadedPercentage !== '100' && (
           <div
             className="progress"
             style={{
-              position: "absolute",
-              top: "0",
-              bottom: "0",
-              left: "0",
-              right: "0",
-              margin: "auto",
-              width: "50%"
+              position: 'absolute',
+              top: '0',
+              bottom: '0',
+              left: '0',
+              right: '0',
+              margin: 'auto',
+              width: '50%'
             }}
           >
             <div
@@ -69,9 +69,9 @@ export default class MapNavigationPage extends React.Component {
               aria-valuenow={this.state.loadedPercentage}
               aria-valuemin="0"
               aria-valuemax="100"
-              style={{ width: this.state.loadedPercentage + "%" }}
+              style={{ width: this.state.loadedPercentage + '%' }}
             >
-              {this.state.loadedPercentage} {I18n.t("PercentsLoaded")}
+              {this.state.loadedPercentage} {I18n.t('PercentsLoaded')}
             </div>
           </div>
         )}

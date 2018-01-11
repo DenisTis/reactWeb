@@ -1,7 +1,7 @@
 'use strict';
 
 function Context() {
-  this.language = "";
+  this.language = '';
 }
 
 export default new Context();

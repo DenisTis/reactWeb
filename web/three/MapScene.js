@@ -1,8 +1,8 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 //import OrbitControls from "orbit-controls-es6";
-import OrbitControls from "./OrbitControlsEnh";
-import GLTF2Loader from "three-gltf2-loader";
+import OrbitControls from './OrbitControlsEnh';
+import GLTF2Loader from 'three-gltf2-loader';
 GLTF2Loader(THREE);
 
 export default class MapScene {
@@ -44,7 +44,7 @@ export default class MapScene {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     //improve fog color and quality later
-    scene.fog = new THREE.Fog("grey", 5, 20);
+    scene.fog = new THREE.Fog('grey', 5, 20);
 
     var mainLight = new THREE.DirectionalLight(0xffffff, 0.4);
     mainLight.position.set(0, 20, -20);
@@ -56,7 +56,7 @@ export default class MapScene {
 
     let loader = new THREE.GLTFLoader();
     loader.load(
-      "assets/scene.glb",
+      'assets/scene.glb',
       function(gltf) {
         // //update as 100% loaded
         // this.onLoad({total: 1});
@@ -69,7 +69,7 @@ export default class MapScene {
           for (let subChild of child.children) {
             subChild.castShadow = true;
             subChild.receiveShadow = true;
-            console.log("test no console");
+            console.log('test no console');
           }
           //scene.add(child);
         }
@@ -86,7 +86,7 @@ export default class MapScene {
       this.onLoad,
       // called when loading has errors
       function(error) {
-        console.log("An error happened");
+        console.log('An error happened');
         console.log(error);
       }
     );
@@ -106,8 +106,8 @@ export default class MapScene {
   }
 
   onLoad(xhr) {
-    let loaded = Math.floor(xhr.loaded / xhr.total * 100) + "";
-    console.log(loaded + "% loaded");
+    let loaded = Math.floor(xhr.loaded / xhr.total * 100) + '';
+    console.log(loaded + '% loaded');
     this.parentComponent.updateLoadedPercentage(loaded);
   }
 
@@ -131,10 +131,10 @@ export default class MapScene {
 
   renderScene() {
     if (
-      this.scene.getObjectByName("Locations") &&
-      this.scene.getObjectByName("Locations").children
+      this.scene.getObjectByName('Locations') &&
+      this.scene.getObjectByName('Locations').children
     ) {
-      let locations = this.scene.getObjectByName("Locations").children;
+      let locations = this.scene.getObjectByName('Locations').children;
       for (let location of locations) {
         this.updateTextLabelPosition(location);
       }
@@ -161,21 +161,21 @@ export default class MapScene {
     if (!textLabel) {
       textLabel = this.createTextLabel(location);
     }
-    textLabel.style.left = projectedPosition.x + "px";
-    textLabel.style.top = projectedPosition.y + "px";
+    textLabel.style.left = projectedPosition.x + 'px';
+    textLabel.style.top = projectedPosition.y + 'px';
   }
 
   createTextLabel(location) {
-    var div = document.createElement("div");
+    var div = document.createElement('div');
     div.id = location.name;
-    div.className = "text-label";
-    div.style.position = "absolute";
+    div.className = 'text-label';
+    div.style.position = 'absolute';
     div.style.width = 100;
     div.style.height = 100;
     div.innerHTML = location.name;
     div.style.top = -1000;
     div.style.left = -1000;
-    document.getElementById("container").appendChild(div);
+    document.getElementById('container').appendChild(div);
     return div;
     //renderer.domElement.getParent().appendChild(div);
   }

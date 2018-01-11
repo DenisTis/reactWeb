@@ -1,0 +1,7 @@
+node_modules/
+.expo/
+npm-debug.*
+//store only original blender file, without versions
+*.blend*
+distWeb/
+docs/

@@ -3,10 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import '../styles.css';
 import MapScene from '../three/MapScene';
-
 import ProgressBar from './ProgressBar.jsx';
-import AppDispatcher from '../flux/AppDispatcher';
-import { EventEmitter } from 'events';
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {

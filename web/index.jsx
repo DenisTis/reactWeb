@@ -3,9 +3,9 @@
 // Import React base modules
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, HashRouter as BrowserRouter, Route } from 'react-router-dom';
 //eslint-disable-next-line
-import Bootstrap from "bootstrap/dist/css/bootstrap.css";
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 //Views
 import Home from './components/Home.jsx';

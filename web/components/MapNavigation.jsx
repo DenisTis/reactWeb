@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import '../styles.css';
 import MapScene from '../three/MapScene';
+
 import ProgressBar from './ProgressBar.jsx';
+import MapLocations from './MapLocations.jsx';
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
@@ -45,6 +47,7 @@ export default class MapNavigationPage extends React.Component {
           </NavLink>
         </div>
         <ProgressBar />
+        <MapLocations />
       </div>
     );
   }

@@ -16,7 +16,13 @@ export default class ProgressBar extends React.Component {
       'STORE_UPDATE_PERCENTAGE',
       this.updatePercentage
     );
-    //Check later if it would be good to remove change listener as well
+  }
+
+  componentWillUnmount() {
+    MapStore.removeChangeListener(
+      'STORE_UPDATE_PERCENTAGE',
+      this.updatePercentage
+    );
   }
 
   updatePercentage() {

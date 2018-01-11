@@ -91,12 +91,6 @@ export default class MapScene {
       }
     );
 
-    // //find how to bind load method to this class (otherwise this.addLocationLabels is not found)
-    // this.addLocationLabels(
-    //   renderer,
-    //   scene.getObjectByName("Locations").children
-    // );
-
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -108,6 +102,39 @@ export default class MapScene {
   onLoad(xhr) {
     let loaded = Math.floor(xhr.loaded / xhr.total * 100) + '';
     MapActions.updatePercentage(loaded);
+  }
+
+  updateLocations() {
+    if (
+      this.scene.getObjectByName('Locations') &&
+      this.scene.getObjectByName('Locations').children
+    ) {
+      let locations = this.scene.getObjectByName('Locations').children;
+      let reactLocations = [];
+      for (let location of locations) {
+        reactLocations.push({
+          id: location.name,
+          position: this.calculateLocationPosition(location)
+        });
+      }
+      MapActions.updateLocations(reactLocations);
+    }
+  }
+
+  calculateLocationPosition(location) {
+    const width = this.mount.clientWidth;
+    const height = this.mount.clientHeight;
+    let textPosition = new THREE.Vector3(0, 0, 0);
+    textPosition.copy(location.position);
+    //Height position
+    textPosition.y = 1;
+    let projectedPosition = textPosition.project(this.camera);
+    projectedPosition.x = (projectedPosition.x + 1) / 2 * width;
+    projectedPosition.y = -(projectedPosition.y - 1) / 2 * height;
+    return {
+      left: projectedPosition.x,
+      top: projectedPosition.y
+    };
   }
 
   start() {
@@ -129,52 +156,7 @@ export default class MapScene {
   }
 
   renderScene() {
-    if (
-      this.scene.getObjectByName('Locations') &&
-      this.scene.getObjectByName('Locations').children
-    ) {
-      let locations = this.scene.getObjectByName('Locations').children;
-      for (let location of locations) {
-        this.updateTextLabelPosition(location);
-      }
-    }
+    this.updateLocations();
     this.renderer.render(this.scene, this.camera);
-  }
-
-  addLocationLabels(renderer, locations) {
-    for (let location of locations) {
-      this.createTextLabel(renderer, location);
-    }
-  }
-
-  updateTextLabelPosition(location) {
-    const width = this.mount.clientWidth;
-    const height = this.mount.clientHeight;
-    let textPosition = new THREE.Vector3(0, 0, 0);
-    textPosition.copy(location.position);
-    textPosition.y = 0.5;
-    let projectedPosition = textPosition.project(this.camera);
-    projectedPosition.x = (projectedPosition.x + 1) / 2 * width;
-    projectedPosition.y = -(projectedPosition.y - 1) / 2 * height;
-    let textLabel = document.getElementById(location.name);
-    if (!textLabel) {
-      textLabel = this.createTextLabel(location);
-    }
-    textLabel.style.left = projectedPosition.x + 'px';
-    textLabel.style.top = projectedPosition.y + 'px';
-  }
-
-  createTextLabel(location) {
-    var div = document.createElement('div');
-    div.id = location.name;
-    div.className = 'text-label';
-    div.style.position = 'absolute';
-    div.style.width = 100;
-    div.style.height = 100;
-    div.innerHTML = location.name;
-    div.style.top = -1000;
-    div.style.left = -1000;
-    document.getElementById('container').appendChild(div);
-    return div;
   }
 }

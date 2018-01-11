@@ -8,6 +8,12 @@ class MapActions {
       value: data
     });
   }
+  updateLocations(data) {
+    AppDispatcher.dispatch({
+      actionType: 'UPDATE_LOCATIONS',
+      value: data
+    });
+  }
 }
 
 export default new MapActions();

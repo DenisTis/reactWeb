@@ -54,6 +54,12 @@ export default class MapScene {
     // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
     // scene.add(helper);
 
+    //Add character
+    let characterGeometry = new THREE.CylinderGeometry(0.06, 0.06, 0.3, 8);
+    var characterMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    this.character = new THREE.Mesh(characterGeometry, characterMaterial);
+    scene.add(this.character);
+
     let loader = new THREE.GLTFLoader();
     loader.load(
       'assets/scene.glb',

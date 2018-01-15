@@ -3,6 +3,7 @@ import I18n from 'i18n-js';
 import '../styles.css';
 
 import MapStore from '../flux/stores/MapStore';
+import MapActions from '../flux/actions/MapActions';
 
 export default class MapLocations extends React.Component {
   constructor(props) {
@@ -22,6 +23,12 @@ export default class MapLocations extends React.Component {
     );
   }
 
+  locationSelected(event) {
+    let location = event.target.parentElement.parentElement.id;
+    console.log(location);
+    MapActions.navigateToLocation(location);
+  }
+
   updateLocations() {
     this.setState({ locations: MapStore.getLocations() });
   }
@@ -38,10 +45,11 @@ export default class MapLocations extends React.Component {
             left: location.position.left - 60 + 'px',
             width: '120px'
           }}
+          key={location.id}
         >
-          <div style={{ margin: 'auto' }}>
+          <div style={{ margin: 'auto' }} onClick={this.locationSelected}>
             <p style={{ textAlign: 'center' }} className="bg-primary">
-              {location.id}
+              {I18n.t(location.id)}
             </p>
           </div>
         </div>

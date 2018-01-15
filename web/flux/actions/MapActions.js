@@ -14,6 +14,13 @@ class MapActions {
       value: data
     });
   }
+
+  navigateToLocation(data) {
+    AppDispatcher.dispatch({
+      actionType: 'NAVIGATE_TO_LOCATION',
+      value: data
+    });
+  }
 }
 
 export default new MapActions();

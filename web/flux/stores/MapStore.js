@@ -1,12 +1,11 @@
 import AppDispatcher from '../AppDispatcher';
 import { EventEmitter } from 'events';
 
-let percentage = 0;
-let locations = [];
-
 class MapStore extends EventEmitter {
   constructor() {
     super();
+    this.percentage = 0;
+    this.locations = [];
     this.dispatchToken = AppDispatcher.register(
       this.dispatcherCallback.bind(this)
     );
@@ -17,19 +16,23 @@ class MapStore extends EventEmitter {
   }
 
   updatePercentage(value) {
-    percentage = value;
+    this.percentage = value;
   }
 
   getPercentage() {
-    return percentage;
+    return this.percentage;
   }
 
   updateLocations(value) {
-    locations = value;
+    this.locations = value;
   }
 
   getLocations() {
-    return locations;
+    return this.locations;
+  }
+
+  navigateToLocation(newLocation) {
+    return newLocation;
   }
 
   addChangeListener(eventName, callback) {
@@ -47,6 +50,9 @@ class MapStore extends EventEmitter {
       break;
     case 'UPDATE_LOCATIONS':
       this.updateLocations(action.value);
+      break;
+    case 'NAVIGATE_TO_LOCATION':
+      this.navigateToLocation(action.value);
       break;
     }
     this.emitChange('STORE_' + action.actionType);

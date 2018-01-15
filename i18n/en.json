@@ -7,5 +7,7 @@
   "home": "Start app",
   "notFound": "Page you are looking for, does not exist",
   "mapNavigation": "Map navigation",
-  "PercentsLoaded": "% loaded"
+  "PercentsLoaded": "% loaded",
+  "HotelBuilding": "Hotel",
+  "AirportBuilding": "Airport"
 }

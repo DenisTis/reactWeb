@@ -1,4 +1,5 @@
 import MapSceneHelper from './MapSceneHelper';
+import Character from './Character';
 
 export default class MapScene {
   constructor() {
@@ -12,6 +13,8 @@ export default class MapScene {
     this.scene = threeObject.scene;
     this.renderer = threeObject.renderer;
     this.controls = threeObject.controls;
+    this.character = threeObject.character;
+    this.characterControl = new Character(this.character.position, this.scene);
     this.start();
     return;
   }
@@ -35,6 +38,7 @@ export default class MapScene {
 
   renderScene() {
     MapSceneHelper.updateLocations(this.scene, this.mount, this.camera);
+    this.characterControl.updateCharacter();
     this.renderer.render(this.scene, this.camera);
   }
 }

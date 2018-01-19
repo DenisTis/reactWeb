@@ -6,6 +6,7 @@ class MapStore extends EventEmitter {
     super();
     this.percentage = 0;
     this.locations = [];
+    this.selectedLocation = false;
     this.dispatchToken = AppDispatcher.register(
       this.dispatcherCallback.bind(this)
     );
@@ -32,7 +33,11 @@ class MapStore extends EventEmitter {
   }
 
   navigateToLocation(newLocation) {
-    return newLocation;
+    this.selectedLocation = newLocation;
+  }
+
+  getSelectLocation() {
+    return this.selectedLocation;
   }
 
   addChangeListener(eventName, callback) {

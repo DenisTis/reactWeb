@@ -54,6 +54,7 @@
     "react-icons": "^2.2.7",
     "react-router-dom": "^4.2.2",
     "three": "^0.89.0",
-    "three-gltf2-loader": "^1.2.0"
+    "three-gltf2-loader": "^1.2.0",
+    "three-pathfinding": "^0.5.5"
   }
 }

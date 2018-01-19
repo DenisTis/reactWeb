@@ -148,7 +148,8 @@ export default new class MapSceneHelper {
       scene: scene,
       camera: camera,
       renderer: renderer,
-      controls: controls
+      controls: controls,
+      character: character
     };
   }
 }();
